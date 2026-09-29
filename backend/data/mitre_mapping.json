@@ -1,0 +1,112 @@
+{
+  "techniques": {
+    "T1110": {
+      "id": "T1110",
+      "name": "Brute Force",
+      "tactic": "Credential Access",
+      "description": "Adversaries may use brute force techniques to gain access to accounts when passwords are unknown or when password hashes are obtained.",
+      "indicators": ["failed_login"],
+      "threshold": {
+        "failed_logins_min": 10,
+        "time_window_minutes": 30,
+        "same_target": true
+      }
+    },
+    "T1110.003": {
+      "id": "T1110.003",
+      "name": "Password Spraying",
+      "tactic": "Credential Access",
+      "description": "Adversaries may use a single or small list of commonly used passwords against many different accounts to attempt to acquire valid account credentials.",
+      "indicators": ["failed_login"],
+      "threshold": {
+        "unique_users_min": 5,
+        "same_source": true,
+        "time_window_minutes": 30
+      }
+    },
+    "T1078": {
+      "id": "T1078",
+      "name": "Valid Accounts",
+      "tactic": "Defense Evasion, Persistence, Privilege Escalation, Initial Access",
+      "description": "Adversaries may obtain and abuse credentials of existing accounts as a means of gaining access.",
+      "indicators": ["successful_login", "new_device_login", "privilege_escalation"],
+      "threshold": {
+        "successful_after_failures": true,
+        "new_device": true
+      }
+    },
+    "T1046": {
+      "id": "T1046",
+      "name": "Network Service Scanning",
+      "tactic": "Discovery",
+      "description": "Adversaries may attempt to get a listing of services running on remote hosts and local network infrastructure.",
+      "indicators": ["port_scan"],
+      "threshold": {
+        "unique_ports_min": 15,
+        "time_window_minutes": 10
+      }
+    },
+    "T1059": {
+      "id": "T1059",
+      "name": "Command and Scripting Interpreter",
+      "tactic": "Execution",
+      "description": "Adversaries may abuse command and script interpreters to execute commands, scripts, or binaries.",
+      "indicators": ["suspicious_process"],
+      "threshold": {}
+    },
+    "T1566": {
+      "id": "T1566",
+      "name": "Phishing",
+      "tactic": "Initial Access",
+      "description": "Adversaries may send phishing messages to gain access to victim systems.",
+      "indicators": ["phishing_detected"],
+      "threshold": {}
+    },
+    "T1041": {
+      "id": "T1041",
+      "name": "Exfiltration Over C2 Channel",
+      "tactic": "Exfiltration",
+      "description": "Adversaries may steal data by exfiltrating it over an existing command and control channel.",
+      "indicators": ["large_outbound_transfer"],
+      "threshold": {
+        "transfer_size_mb_min": 100
+      }
+    },
+    "T1078.004": {
+      "id": "T1078.004",
+      "name": "Cloud Accounts",
+      "tactic": "Defense Evasion, Persistence, Initial Access",
+      "description": "Adversaries may obtain and abuse credentials of a cloud account to gain access.",
+      "indicators": ["impossible_travel", "new_device_login"],
+      "threshold": {
+        "impossible_travel": true
+      }
+    },
+    "T1556": {
+      "id": "T1556",
+      "name": "Modify Authentication Process",
+      "tactic": "Credential Access, Defense Evasion, Persistence",
+      "description": "Adversaries may modify authentication mechanisms and processes to access user credentials.",
+      "indicators": ["multiple_failed_mfa", "password_reset"],
+      "threshold": {
+        "mfa_failures_min": 5
+      }
+    },
+    "T1204": {
+      "id": "T1204",
+      "name": "User Execution",
+      "tactic": "Execution",
+      "description": "An adversary may rely upon specific actions by a user in order to gain execution.",
+      "indicators": ["malware_detected", "suspicious_process"],
+      "threshold": {}
+    },
+    "T1071": {
+      "id": "T1071",
+      "name": "Application Layer Protocol",
+      "tactic": "Command and Control",
+      "description": "Adversaries may communicate using OSI application layer protocols to avoid detection/network filtering.",
+      "indicators": ["suspicious_dns"],
+      "threshold": {}
+    }
+  }
+}
